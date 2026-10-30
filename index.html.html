@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Bàn Nghề Nghiệp – Khám phá tiềm năng của bạn trong 3 phút</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    fontFamily: { sans: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'] },
+    colors: {
+      ink: '#10285A', brand: '#2F6BFF', sky: '#E6EEFF',
+      peach: '#FFD3B0', sun: '#FF8A4C', cream: '#FFF7F0'
+    }
+  } }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FFF7F0; }
+  .blob { position: absolute; border-radius: 9999px; filter: blur(60px); opacity: .55; pointer-events: none; }
+  @keyframes inRight { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+  @keyframes inLeft  { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
+  @keyframes outLeft { to { opacity: 0; transform: translateX(-36px); } }
+  @keyframes outRight{ to { opacity: 0; transform: translateX(36px); } }
+  @keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+  @keyframes bob { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-10px) rotate(var(--r,0deg)); } }
+  @keyframes floatXp { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-28px); } }
+  .in-right { animation: inRight .35s ease both; }
+  .in-left  { animation: inLeft .35s ease both; }
+  .out-left { animation: outLeft .25s ease both; }
+  .out-right{ animation: outRight .25s ease both; }
+  .pop { animation: pop .5s cubic-bezier(.2,1.4,.4,1) both; }
+  .bob { animation: bob 4s ease-in-out infinite; }
+  .xp-float { animation: floatXp .8s ease-out forwards; }
+  .opt { transition: transform .15s, box-shadow .15s, border-color .15s, background-color .15s; }
+  .opt:hover { transform: translateY(-2px); border-color: #2F6BFF; }
+  .opt.chosen { background: #2F6BFF; border-color: #2F6BFF; color: #fff; transform: scale(1.02); }
+  .opt.chosen .chip { background: #FF8A4C; color: #fff; }
+  .bar { transition: width .9s cubic-bezier(.2,.8,.2,1); }
+  :focus-visible { outline: 3px solid #FF8A4C; outline-offset: 3px; }
+  dialog::backdrop { background: rgba(16,40,90,.55); backdrop-filter: blur(3px); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body class="font-sans text-ink antialiased min-h-screen">
+
+<header class="max-w-3xl mx-auto px-5 pt-5 flex items-center gap-2">
+  <span class="w-9 h-9 rounded-xl bg-brand text-white grid place-items-center text-lg" aria-hidden="true">🧭</span>
+  <span class="font-extrabold tracking-tight">La Bàn Nghề Nghiệp</span>
+</header>
+
+<main class="max-w-3xl mx-auto px-5 pb-16">
+
+  <!-- HERO -->
+  <section id="hero" class="relative pt-10 pb-8 text-center">
+    <div class="blob w-64 h-64 bg-peach -top-4 -left-24"></div>
+    <div class="blob w-64 h-64 bg-sky top-24 -right-24"></div>
+    <div class="relative">
+      <p class="inline-block bg-white border border-peach text-sun font-semibold text-sm rounded-full px-4 py-1.5">Dành cho học sinh THPT</p>
+      <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+        Khám phá tiềm năng nghề nghiệp của bạn trong 3 phút!
+      </h1>
+      <p class="mt-4 text-lg text-ink/75 max-w-xl mx-auto">
+        Trả lời 5 câu hỏi về sở thích, nhận ngay nhóm ngành phù hợp cùng các môn học nên tập trung.
+      </p>
+      <button id="startBtn" class="mt-7 bg-sun hover:bg-orange-500 active:scale-95 transition text-white font-bold text-lg rounded-full px-9 py-4 shadow-lg shadow-orange-300/60">
+        Bắt đầu ngay
+      </button>
+
+      <ul class="mt-10 grid grid-cols-4 gap-2 sm:gap-4 text-sm font-semibold" aria-label="Bốn nhóm ngành">
+        <li class="bob bg-white rounded-2xl py-4 border border-sky" style="--r:-3deg"><span class="block text-2xl">💻</span>Công nghệ</li>
+        <li class="bob bg-white rounded-2xl py-4 border border-sky" style="--r:2deg;animation-delay:.6s"><span class="block text-2xl">🎨</span>Sáng tạo</li>
+        <li class="bob bg-white rounded-2xl py-4 border border-sky" style="--r:-2deg;animation-delay:1.2s"><span class="block text-2xl">📈</span>Kinh doanh</li>
+        <li class="bob bg-white rounded-2xl py-4 border border-sky" style="--r:3deg;animation-delay:1.8s"><span class="block text-2xl">🤝</span>Xã hội</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden pt-6" aria-live="polite">
+    <div class="bg-white rounded-3xl shadow-xl shadow-blue-200/50 p-5 sm:p-8 border border-sky overflow-hidden">
+      <div class="flex items-center justify-between text-sm font-bold">
+        <span id="qCount" class="text-brand">Câu 1/5</span>
+        <span class="relative bg-peach/60 text-ink rounded-full px-3 py-1">⭐ <span id="xp">0</span> XP
+          <span id="xpFloat" class="hidden absolute -top-1 right-2 text-sun font-extrabold">+20</span>
+        </span>
+      </div>
+      <div class="mt-3 h-3 rounded-full bg-sky overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="5" id="progress" aria-valuenow="0">
+        <div id="progressFill" class="h-full rounded-full bg-gradient-to-r from-brand to-sun bar" style="width:0%"></div>
+      </div>
+
+      <div id="qBody" class="mt-6 min-h-[420px]"></div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <button id="backBtn" class="text-sm font-semibold text-ink/60 hover:text-brand disabled:opacity-30 disabled:hover:text-ink/60" disabled>← Câu trước</button>
+        <span id="levelTag" class="text-sm font-semibold text-ink/60"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="hidden pt-6"></section>
+
+</main>
+
+<!-- MODAL ĐĂNG KÝ -->
+<dialog id="signup" class="rounded-3xl p-0 w-[92vw] max-w-md border-0 shadow-2xl">
+  <div class="p-6">
+    <div class="flex items-start justify-between gap-3">
+      <h2 class="text-xl font-extrabold">Nhận cẩm nang hướng nghiệp</h2>
+      <button id="closeSignup" class="text-2xl leading-none text-ink/50 hover:text-ink" aria-label="Đóng">×</button>
+    </div>
+    <p class="mt-1 text-ink/70 text-sm">Điền email để nhận bản cẩm nang kèm lộ trình chọn trường, chọn ngành.</p>
+    <form id="signupForm" class="mt-4 space-y-3">
+      <label class="block text-sm font-semibold">Họ và tên
+        <input required name="name" class="mt-1 w-full rounded-xl border border-sky bg-cream px-4 py-3 focus:border-brand focus:outline-none" placeholder="Nguyễn Minh Anh">
+      </label>
+      <label class="block text-sm font-semibold">Email
+        <input required type="email" name="email" class="mt-1 w-full rounded-xl border border-sky bg-cream px-4 py-3 focus:border-brand focus:outline-none" placeholder="ban@email.com">
+      </label>
+      <button class="w-full bg-sun hover:bg-orange-500 text-white font-bold rounded-full py-3.5 transition">Gửi cẩm nang cho tôi</button>
+    </form>
+    <p id="signupOk" class="hidden mt-4 bg-sky text-ink rounded-xl p-4 text-sm font-semibold">Đã ghi nhận! Cẩm nang sẽ được gửi vào email của bạn. 🎉</p>
+  </div>
+</dialog>
+
+<script>
+const QUESTIONS = [
+  { tag: 'Sở thích thời gian rảnh', icon: '🕹️', q: 'Khi có thời gian rảnh, bạn thích làm gì nhất?',
+    o: ['Mày mò công nghệ, chơi game', 'Vẽ, sáng tạo nội dung', 'Đọc sách kinh doanh, tính toán', 'Trò chuyện, hỗ trợ bạn bè'] },
+  { tag: 'Vai trò trong nhóm', icon: '👥', q: 'Trong một dự án nhóm, bạn thường đảm nhận vai trò nào?',
+    o: ['Lập kế hoạch, thuyết trình', 'Thiết kế, đưa ra ý tưởng đột phá', 'Giải quyết kỹ thuật, xử lý dữ liệu', 'Kết nối, hòa giải các thành viên'] },
+  { tag: 'Môn học yêu thích', icon: '📚', q: 'Nhóm môn học nào khiến bạn hào hứng nhất?',
+    o: ['Toán, Tin, Lý', 'Văn, Sử, Ngoại ngữ', 'Mỹ thuật, Âm nhạc', 'Kinh tế, Pháp luật, Hoạt động thực tế'] },
+  { tag: 'Môi trường làm việc mơ ước', icon: '🏢', q: 'Bạn muốn đi làm ở nơi như thế nào?',
+    o: ['Không gian tài chính năng động', 'Studio tự do, làm việc từ xa', 'Xưởng kỹ thuật, phòng lab', 'Trường học, tổ chức cộng đồng'] },
+  { tag: 'Cách giải quyết vấn đề', icon: '🧩', q: 'Khi gặp một vấn đề khó, bạn sẽ xử lý ra sao?',
+    o: ['Phân tích logic từ dữ liệu', 'Thấu cảm để tìm giải pháp hài hòa', 'Phá cách, tạo sự khác biệt', 'Hành động thực tế, quyết đoán'] }
+];
+
+// Điểm A = Công nghệ, B = Sáng tạo, C = Kinh doanh, D = Xã hội
+const GROUPS = {
+  A: { name: 'Công nghệ & Kỹ thuật', icon: '💻', title: 'Nhà kiến tạo logic',
+    desc: 'Bạn tò mò, thích tìm hiểu cách mọi thứ vận hành và có tư duy logic rõ ràng. Bạn thấy vui khi gỡ được một bài toán khó hoặc biến ý tưởng thành sản phẩm chạy được.',
+    careers: [['Kỹ sư phần mềm / AI', 'Xây ứng dụng, website và hệ thống thông minh'], ['Chuyên viên phân tích dữ liệu', 'Biến con số thành quyết định cho doanh nghiệp'], ['Kỹ sư cơ điện tử – Robot', 'Thiết kế máy móc và thiết bị tự động'], ['Chuyên gia an ninh mạng', 'Bảo vệ hệ thống và dữ liệu trước tấn công']],
+    subjects: ['Toán', 'Tin học', 'Vật lí', 'Tiếng Anh'] },
+  B: { name: 'Sáng tạo & Truyền thông', icon: '🎨', title: 'Người kể chuyện giàu ý tưởng',
+    desc: 'Bạn có óc thẩm mỹ, trí tưởng tượng phong phú và thích thể hiện cá tính qua sản phẩm của mình. Bạn làm việc tốt nhất khi được tự do thử cái mới.',
+    careers: [['Thiết kế đồ họa / UI-UX', 'Tạo giao diện và hình ảnh thương hiệu'], ['Nhà sáng tạo nội dung', 'Xây kênh, viết bài, sản xuất video, podcast'], ['Đạo diễn / Biên tập video', 'Kể chuyện bằng hình ảnh và âm thanh'], ['Nhà báo / Biên tập viên', 'Tìm kiếm, kiểm chứng và kể câu chuyện hay']],
+    subjects: ['Ngữ văn', 'Mỹ thuật', 'Ngoại ngữ', 'Tin học ứng dụng'] },
+  C: { name: 'Kinh doanh & Tài chính', icon: '📈', title: 'Nhà hoạch định chiến lược',
+    desc: 'Bạn nhạy bén với con số, thích lập kế hoạch và nhìn ra cơ hội trước người khác. Bạn quyết đoán, có tinh thần cạnh tranh lành mạnh và muốn thấy kết quả cụ thể.',
+    careers: [['Chuyên viên tài chính – ngân hàng', 'Quản lý dòng tiền, đầu tư và tín dụng'], ['Kế toán – Kiểm toán', 'Đảm bảo số liệu minh bạch, chính xác'], ['Quản trị kinh doanh / Khởi nghiệp', 'Xây dựng và điều hành doanh nghiệp'], ['Marketing & Thương mại điện tử', 'Đưa sản phẩm đến đúng khách hàng']],
+    subjects: ['Toán', 'Kinh tế & Pháp luật', 'Tiếng Anh', 'Tin học'] },
+  D: { name: 'Xã hội & Nhân văn', icon: '🤝', title: 'Người kết nối thấu cảm',
+    desc: 'Bạn biết lắng nghe, dễ đồng cảm và luôn muốn giúp mọi người hiểu nhau hơn. Bạn tạo ra giá trị khi thấy người khác tiến bộ hoặc cộng đồng tốt lên.',
+    careers: [['Giáo viên / Sư phạm', 'Truyền cảm hứng và dẫn dắt thế hệ sau'], ['Tâm lí học / Công tác xã hội', 'Đồng hành cùng người cần hỗ trợ'], ['Nhân sự / Quan hệ công chúng', 'Xây dựng văn hóa và kết nối con người'], ['Luật / Quan hệ quốc tế', 'Bảo vệ quyền lợi và xây cầu nối giữa các bên']],
+    subjects: ['Ngữ văn', 'Lịch sử', 'Giáo dục kinh tế & pháp luật', 'Ngoại ngữ'] }
+};
+const LEVELS = ['Tân binh khám phá', 'Thám hiểm gia', 'Nhà thám hiểm', 'Bậc thầy bản đồ', 'Sắp tìm ra la bàn!'];
+
+const $ = id => document.getElementById(id);
+let answers = [], current = 0, busy = false;
+
+function show(id) {
+  ['hero', 'quiz', 'result'].forEach(s => $(s).classList.toggle('hidden', s !== id));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startQuiz() { answers = []; current = 0; busy = false; show('quiz'); renderQuestion('in-right'); }
+
+function renderQuestion(anim) {
+  const q = QUESTIONS[current];
+  $('qCount').textContent = `Câu ${current + 1}/5`;
+  $('xp').textContent = answers.length * 20;
+  $('progressFill').style.width = (current / 5 * 100) + '%';
+  $('progress').setAttribute('aria-valuenow', current);
+  $('levelTag').textContent = 'Cấp ' + (current + 1) + ': ' + LEVELS[current];
+  $('backBtn').disabled = current === 0;
+  const letters = ['A', 'B', 'C', 'D'];
+  $('qBody').className = 'mt-6 min-h-[420px] ' + anim;
+  $('qBody').innerHTML = `
+    <div class="flex items-center gap-3">
+      <span class="w-12 h-12 rounded-2xl bg-peach/70 grid place-items-center text-2xl" aria-hidden="true">${q.icon}</span>
+      <p class="font-semibold text-sun">${q.tag}</p>
+    </div>
+    <h2 class="mt-3 text-2xl font-extrabold leading-snug">${q.q}</h2>
+    <div class="mt-5 grid gap-3" role="group" aria-label="Các lựa chọn">
+      ${q.o.map((t, i) => `
+        <button data-i="${i}" class="opt ${answers[current] === letters[i] ? 'chosen' : ''} w-full flex items-center gap-4 text-left bg-cream border-2 border-sky rounded-2xl px-4 py-4 font-semibold">
+          <span class="chip shrink-0 w-9 h-9 rounded-xl bg-white text-brand font-extrabold grid place-items-center border border-sky">${letters[i]}</span>
+          <span>${t}</span>
+        </button>`).join('')}
+    </div>`;
+  $('qBody').querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => choose(+b.dataset.i, b)));
+}
+
+function choose(i, btn) {
+  if (busy) return;
+  busy = true;
+  answers[current] = 'ABCD'[i];
+  btn.classList.add('chosen');
+  answers.length = current + 1;
+  $('xp').textContent = answers.length * 20;
+  const f = $('xpFloat'); f.classList.remove('hidden', 'xp-float'); void f.offsetWidth; f.classList.add('xp-float');
+  $('progressFill').style.width = ((current + 1) / 5 * 100) + '%';
+  setTimeout(() => {
+    $('qBody').className = 'mt-6 min-h-[420px] out-left';
+    setTimeout(() => {
+      busy = false;
+      if (current === 4) return showResult();
+      current++; renderQuestion('in-right');
+    }, 250);
+  }, 450);
+}
+
+$('backBtn').addEventListener('click', () => {
+  if (busy || current === 0) return;
+  current--; renderQuestion('in-left');
+});
+
+function calcResult() {
+  const count = { A: 0, B: 0, C: 0, D: 0 };
+  answers.forEach(a => count[a]++);
+  const max = Math.max(...Object.values(count));
+  const tied = Object.keys(count).filter(k => count[k] === max);
+  // Nếu hòa, ưu tiên lựa chọn gần nhất (phản ánh xu hướng sau cùng của người dùng)
+  let main = tied[0];
+  if (tied.length > 1) for (let i = answers.length - 1; i >= 0; i--) { if (tied.includes(answers[i])) { main = answers[i]; break; } }
+  const second = Object.keys(count).filter(k => k !== main).sort((a, b) => count[b] - count[a])[0];
+  return { count, main, second: count[second] >= 2 ? second : null };
+}
+
+function showResult() {
+  const { count, main, second } = calcResult();
+  const g = GROUPS[main];
+  const bars = Object.keys(GROUPS).map(k => `
+    <div>
+      <div class="flex justify-between text-sm font-semibold"><span>${GROUPS[k].icon} ${GROUPS[k].name}</span><span>${count[k] / 5 * 100}%</span></div>
+      <div class="mt-1 h-2.5 rounded-full bg-sky overflow-hidden"><div class="bar h-full rounded-full ${k === main ? 'bg-sun' : 'bg-brand/60'}" data-w="${count[k] / 5 * 100}" style="width:0%"></div></div>
+    </div>`).join('');
+  $('result').innerHTML = `
+    <div class="bg-white rounded-3xl shadow-xl shadow-blue-200/50 border border-sky overflow-hidden">
+      <div class="bg-gradient-to-br from-brand to-blue-500 text-white p-6 sm:p-8 text-center">
+        <div class="pop w-20 h-20 mx-auto rounded-3xl bg-white/20 grid place-items-center text-5xl" aria-hidden="true">${g.icon}</div>
+        <p class="mt-4 text-sm font-semibold text-peach">Bạn thuộc nhóm</p>
+        <h2 class="text-3xl font-extrabold leading-tight">${g.name}</h2>
+        <p class="mt-1 font-semibold">${g.title}</p>
+        <p class="mt-3 inline-block bg-white/20 rounded-full px-4 py-1 text-sm font-bold">⭐ 100 XP – Hoàn thành khám phá!</p>
+      </div>
+      <div class="p-5 sm:p-8 space-y-7">
+        <p class="text-ink/80 leading-relaxed">${g.desc}</p>
+        ${second ? `<p class="bg-cream border border-peach rounded-2xl p-4 text-sm">Bạn cũng có nét của nhóm <b>${GROUPS[second].name}</b> ${GROUPS[second].icon}. Hãy tham khảo thêm các ngành ở nhóm này nhé.</p>` : ''}
+        <div>
+          <h3 class="font-extrabold text-lg">Ngành nghề xu hướng dành cho bạn</h3>
+          <ul class="mt-3 grid sm:grid-cols-2 gap-3">
+            ${g.careers.map(c => `<li class="bg-sky/60 rounded-2xl p-4"><p class="font-bold">${c[0]}</p><p class="text-sm text-ink/70 mt-1">${c[1]}</p></li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-extrabold text-lg">Các môn nên tập trung</h3>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            ${g.subjects.map(s => `<li class="bg-peach/60 rounded-full px-4 py-2 font-semibold text-sm">${s}</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-extrabold text-lg">Biểu đồ sở thích của bạn</h3>
+          <div class="mt-3 space-y-3">${bars}</div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <button id="signupBtn" class="flex-1 bg-sun hover:bg-orange-500 text-white font-bold rounded-full py-4 transition active:scale-95">Đăng ký nhận cẩm nang hướng nghiệp</button>
+          <button id="retryBtn" class="flex-1 bg-white border-2 border-brand text-brand hover:bg-sky font-bold rounded-full py-4 transition active:scale-95">Làm lại bài trắc nghiệm</button>
+        </div>
+      </div>
+    </div>`;
+  show('result');
+  $('signupBtn').addEventListener('click', () => { $('signupOk').classList.add('hidden'); $('signupForm').classList.remove('hidden'); $('signup').showModal(); });
+  $('retryBtn').addEventListener('click', startQuiz);
+  requestAnimationFrame(() => setTimeout(() => $('result').querySelectorAll('[data-w]').forEach(b => b.style.width = b.dataset.w + '%'), 80));
+}
+
+$('startBtn').addEventListener('click', startQuiz);
+$('closeSignup').addEventListener('click', () => $('signup').close());
+$('signup').addEventListener('click', e => { if (e.target === $('signup')) $('signup').close(); });
+$('signupForm').addEventListener('submit', e => {
+  e.preventDefault();
+  // Thay phần này bằng lệnh gửi dữ liệu thật (fetch tới API/Google Sheets/Mailchimp...)
+  $('signupForm').classList.add('hidden');
+  $('signupOk').classList.remove('hidden');
+  e.target.reset();
+});
+</script>
+</body>
+</html>
